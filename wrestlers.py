@@ -1,6 +1,6 @@
 import sys
 
-with open(sys.argv[1], 'r') as inFile:
+with open('wrestler4.txt', 'r') as inFile:
     # Create a dictionary to store our key/value pairs
     roster = {}
     flag = 1
@@ -53,10 +53,10 @@ with open(sys.argv[1], 'r') as inFile:
             continue
 
         if(roster[r1] == 'blue' and roster[r2] == 'blue'):
-            exit('No - Impossible')
+            exit('Impossible')
 
         if(roster[r1] == 'red' and roster[r2] == 'red'):
-            exit('No - Impossible')
+            exit('Impossible')
 
     babyFace = []
     heel = []
@@ -66,10 +66,10 @@ with open(sys.argv[1], 'r') as inFile:
         else:
             heel.append(i)
 
-    print('Yes - possible')
-    print('Babyfaces:'),
+    print('Yes possible')
+    print('Babyfaces: ', end=" "),
     for i in babyFace:
-        print(i),
-    print('\nHeels:'),
+        print(i, end=" "),
+    print('\nHeels: ', end=" "),
     for i in heel:
-        print(i)
+        print(i, end=" ")
