@@ -1,6 +1,7 @@
 import sys
 
-with open(sys.argv[1], 'r') as inFile:
+#with open(sys.argv[1], 'r') as inFile:
+with open('wrestler4.txt', 'r') as inFile:
     # Create a dictionary to store our key/value pairs
     roster = {}
     flag = 1
@@ -32,8 +33,8 @@ with open(sys.argv[1], 'r') as inFile:
         # Main conditional blocks for evaluating each wrestler pairing
         # We use a key/value pair format to quickly access and evaluate the color of each wrestler against the specified condition
         if(roster[r1] == 'none' and roster[r2] == 'none'):
-            roster[r1] = 'blue'
-            roster[r2] = 'red'
+            roster[r1] = 'blue' # babyface
+            roster[r2] = 'red'  # heel
             continue
 
         if(roster[r1] == 'none' and roster[r2] != 'none'):
@@ -73,3 +74,5 @@ with open(sys.argv[1], 'r') as inFile:
     print('\nHeels: ', end=" "),
     for i in heel:
         print(i, end=" ")
+
+print(roster)
