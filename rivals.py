@@ -10,20 +10,13 @@ n = int(infile.readline().strip())
 print('# of wrestlers: ', n)
 
 
-set_team = 'baby_face'
-
-
 for wrestler in range(n):
   wrestler_name = infile.readline().strip()
-  print(wrestler_name)
-  if set_team == 'baby_face':
-    team = 'babyface'
+  if wrestler == 0:
+    lineup[wrestler_name] = 'babyface'
   else:
-    team = 'none'
+    lineup[wrestler_name] = 'none'
 
-  set_team = 'none'
-
-  lineup[wrestler_name] = team
 
 print(lineup)
 
