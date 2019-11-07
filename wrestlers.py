@@ -1,6 +1,6 @@
 import sys
 
-with open('wrestler4.txt', 'r') as inFile:
+with open(sys.argv[1], 'r') as inFile:
     # Create a dictionary to store our key/value pairs
     roster = {}
     flag = 1
