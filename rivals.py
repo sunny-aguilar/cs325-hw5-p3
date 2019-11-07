@@ -1,7 +1,7 @@
 import sys
 
 #infile = open(sys.argv[1], 'r')
-infile = open('wrestler4.txt', 'r')
+infile = open('test.txt', 'r')
 
 lineup = {}           # dictionary to hold wrestlers
 
