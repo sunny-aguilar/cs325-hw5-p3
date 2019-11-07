@@ -1,87 +1,79 @@
 import sys
 
-#infile = open(sys.argv[1], 'r')
-infile = open('wrestler4.txt', 'r')
+#with open(sys.argv[1], 'r') as inFile:
+with open('wrestler4.txt', 'r') as inFile:
+    # Create a dictionary to store our key/value pairs
+    roster = {}
+    flag = 1
 
-lineup = {}           # dictionary to hold wrestlers
+    # Read in first line of the input file (number of wrestler's to process)
+    n = int(inFile.readline().rstrip())
 
-# get total wrestlers
-n = int(infile.readline().strip())
-print('# of wrestlers: ', n)
+    # Loop through each wrestler name using n as the range
+    for i in range(n):
+        name = inFile.readline().rstrip()
+        color = 'none' if flag == 0 else 'blue'
 
+        # First loop of the wrestler will set the flag to 1 (we only want the first looped wrestler to be a babyface - blue)
+        flag = 0
 
-for wrestler in range(n):
-  wrestler_name = infile.readline().strip()
-  if wrestler == 0:
-    lineup[wrestler_name] = 'babyface'
-  else:
-    lineup[wrestler_name] = 'none'
+        roster[name] = color
 
+    # After reading in each wrestler line, the next line will be the number of rivalries
+    n = int(inFile.readline().rstrip())
 
-print(lineup)
+    # Loop through each rivalry
+    for i in range(n):
+        line = inFile.readline().rstrip()
+        # Split each line into an array of two items consisting of the rivalry)
+        rivalry = [str(i) for i in line.split()]
+        r1 = rivalry[0]
+        r2 = rivalry[1]
 
+        # Main conditional blocks for evaluating each wrestler pairing
+        # We use a key/value pair format to quickly access and evaluate the color of each wrestler against the specified condition
+        if(roster[r1] == 'none' and roster[r2] == 'none'):
+            roster[r1] = 'blue' # babyface
+            roster[r2] = 'red'  # heel
+            continue
 
-# get number of rivalries
-rivalries = infile.readline().strip()
-print('# of rivalries: ', rivalries)
+        if(roster[r1] == 'none' and roster[r2] != 'none'):
+            roster[r1] = 'blue' if roster[r2] == 'red' else 'red'
+            print('Color: ', roster[r1])
+            continue
 
+        if (roster[r2] == 'none' and roster[r1] != 'none'):
+            roster[r2] = 'red' if roster[r1] == 'blue' else 'blue'
+            continue
 
-for i in range(n-1):
-  line = infile.readline().strip()
-  rivalry = [str(i) for i in line.split()]
-  print(rivalry)
+        if(roster[r1] == 'blue' and roster[r2] == 'none'):
+            roster[r2] = 'red'
+            continue
 
-  r1 = rivalry[0]
-  r2 = rivalry[1]
+        if(roster[r1] == 'red' and roster[r2] == 'none'):
+            roster[r2] = 'blue'
+            continue
 
+        if(roster[r1] == 'blue' and roster[r2] == 'blue'):
+            exit('Impossible')
 
-  if (lineup[r1] == 'none' and lineup[r2] == 'none'):
-    lineup[r1], lineup[r2] = 'babyface', 'heel'
-    continue
+        if(roster[r1] == 'red' and roster[r2] == 'red'):
+          exit('Impossible')
 
-  if (lineup[r1] == 'none' and lineup[r2] != 'none'):
-    # if lineup[r2] == 'heel':
-    #   lineup[r1] == 'babyface'
-    # else:
-    #   lineup[r1] = 'heel'
-    lineup[r1] = 'babyface' if lineup[r2] == 'heel' else 'heel'
-    continue
+    babyFace = []
+    heel = []
+    for i in roster:
+        if roster[i] == 'blue':
+            babyFace.append(i)
+        else:
+            heel.append(i)
 
-  if (lineup[r2] == 'none' and lineup[r1] != 'none'):
-    # if lineup[r1] == 'babyface':
-    #   lineup[r2] == 'heel'
-    # else:
-    #   lineup[r2] = 'babyface'
-    lineup[r2] = 'heel' if lineup[r1] == 'babyface' else 'babyface'
-    continue
+    print('Yes possible')
+    print('Babyfaces: ', end=" "),
+    for i in babyFace:
+        print(i, end=" "),
+    print('\nHeels: ', end=" "),
+    for i in heel:
+        print(i, end=" ")
 
-  if (lineup[r1] == 'babyface' and lineup[r2] == 'none'):
-    lineup[r2] = 'heel'
-    continue
-
-  if (lineup[r1] == 'heel' and lineup[r2] == 'none'):
-    lineup[r2] = 'babyface'
-    continue
-
-  if (lineup[r1] == 'babyface' and lineup[r2] == 'babyface'):
-    exit('Impossible')
-
-  if (lineup[r1] == 'heel' and lineup[r2] == 'heel'):
-    exit('Impossible')
-
-print(lineup)
-team_babyface = []
-team_heel = []
-
-for wrestler in lineup:
-  if lineup[wrestler] == 'babyface':
-    team_babyface.append(wrestler)
-  else:
-    team_heel.append(wrestler)
-
-print('Yes possible')
-print('Babyfaces: ', end=" ")
-print(*team_babyface, sep=' ')
-print('\nHeels: ', end=" ")
-print(*team_heel, sep=' ')
-
+print(roster)
