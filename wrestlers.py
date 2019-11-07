@@ -39,6 +39,7 @@ with open('wrestler4.txt', 'r') as inFile:
 
         if(roster[r1] == 'none' and roster[r2] != 'none'):
             roster[r1] = 'blue' if roster[r2] == 'red' else 'red'
+            print('Color: ', roster[r1])
             continue
 
         if (roster[r2] == 'none' and roster[r1] != 'none'):
@@ -57,7 +58,7 @@ with open('wrestler4.txt', 'r') as inFile:
             exit('Impossible')
 
         if(roster[r1] == 'red' and roster[r2] == 'red'):
-            exit('Impossible')
+          exit('Impossible')
 
     babyFace = []
     heel = []

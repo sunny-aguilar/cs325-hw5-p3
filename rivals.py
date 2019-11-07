@@ -17,7 +17,7 @@ for wrestler in range(n):
   wrestler_name = infile.readline().strip()
   print(wrestler_name)
   if set_team == 'baby_face':
-    team = 'baby_face'
+    team = 'babyface'
   else:
     team = 'none'
 
@@ -76,7 +76,7 @@ for i in range(n-1):
   if (lineup[r1] == 'heel' and lineup[r2] == 'heel'):
     exit('Impossible')
 
-
+print(lineup)
 team_babyface = []
 team_heel = []
 
