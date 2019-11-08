@@ -8,6 +8,9 @@ class Wrestler:
     self.team = team
     self.rival = rival
 
+  def get_name(self):
+    return self.name
+
   def set_rival(self, rival):
     self.rival = rival
 
@@ -34,6 +37,11 @@ for wrestler in range(n):
     p1 = Wrestler(wrestler_name, 'babyface')
   else:
     p1 = Wrestler(wrestler_name, 'none')
+
+  lineup[wrestler_name] = p1
+
+
+
 
 
 
