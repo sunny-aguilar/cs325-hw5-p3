@@ -14,7 +14,7 @@ class Wrestler:
   def get_rival(self):
     return self.rival
 
-  def set_team(self):
+  def set_team(self, team):
     self.team = team
 
   def get_team(self):
