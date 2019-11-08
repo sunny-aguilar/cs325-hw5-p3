@@ -40,18 +40,18 @@ for i in range(n-1):
     continue
 
   if (lineup[r1] == 'none' and lineup[r2] != 'none'):
-    # if lineup[r2] == 'heel':
-    #   lineup[r1] == 'babyface'
-    # else:
-    #   lineup[r1] = 'heel'
-    lineup[r1] = 'babyface' if lineup[r2] == 'heel' else 'heel'
+    if lineup[r2] == 'heel':
+      lineup[r1] == 'babyface'
+    else:
+      lineup[r1] = 'heel'
+    # lineup[r1] = 'babyface' if lineup[r2] == 'heel' else 'heel'
     continue
 
   if (lineup[r2] == 'none' and lineup[r1] != 'none'):
     # if lineup[r1] == 'babyface':
     #   lineup[r2] == 'heel'
     # else:
-    #   lineup[r2] = 'babyface'
+    #   lineup[r1] = 'babyface'
     lineup[r2] = 'heel' if lineup[r1] == 'babyface' else 'babyface'
     continue
 

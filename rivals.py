@@ -58,7 +58,7 @@ with open('wrestler4.txt', 'r') as inFile:
             exit('Impossible')
 
         if(roster[r1] == 'red' and roster[r2] == 'red'):
-          exit('Impossible')
+            exit('Impossible')
 
     babyFace = []
     heel = []
