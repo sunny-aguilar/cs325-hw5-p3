@@ -20,5 +20,14 @@ class Wrestler:
   def get_team(self):
     return self.team
 
-player = Wrestler('Sunny', 'Babyface', 'none')
-print(player.get_rival())
+
+lineup = {}           # dictionary to hold wrestler objects
+
+# get total wrestlers
+n = int(infile.readline().strip())
+print('# of wrestlers: ', n)
+
+
+for wrestler in range(n):
+  wrestler_name = infile.readline().strip()
+
