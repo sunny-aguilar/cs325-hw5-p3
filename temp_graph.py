@@ -9,5 +9,19 @@ n = int(infile.readline().strip())
 print('# of wrestlers: ', n)
 
 
+for wrestler in range(n):
+  wrestler_name = infile.readline().strip()
+  if wrestler == 0:
+    lineup[wrestler_name] = 'babyface'
+  else:
+    lineup[wrestler_name] = 'none'
+
+
+
+
+
+
+
+
 
 
