@@ -41,8 +41,9 @@ for wrestler in range(n):
   lineup[wrestler_name] = p1
 
 
-
-
+# get number of rivalries
+rivalries = infile.readline().strip()
+print('# of rivalries: ', rivalries)
 
 
 
