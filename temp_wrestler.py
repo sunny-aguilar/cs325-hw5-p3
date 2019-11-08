@@ -2,22 +2,19 @@ import sys
 
 infile = open('wrestler4.txt', 'r')
 
-lineup = {}
+class Wrestler:
+  def __init__(self, name, team = 'none', rival = 'none'):
+    self.name = name
+    self.team = team
+    self.rival = rival
 
-# get total wrestlers
-n = int(infile.readline().strip())
-print('# of wrestlers: ', n)
+  def set_rival(self, rival):
+    self.rival = rival
 
-# get wrestlers & assign team
-for wrestler in range(n):
-  wrestler_name = infile.readline().strip()
-  if wrestler == 0:
-    lineup[wrestler_name] = 'babyface'
-  else:
-    lineup[wrestler_name] = 'none'
+player = Wrestler('Wendy', 'heel')
 
+print(player.name)
 
-print(lineup)
-
+player.set_rival('Babyface')
 
 
