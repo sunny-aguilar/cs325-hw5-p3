@@ -11,10 +11,14 @@ class Wrestler:
   def set_rival(self, rival):
     self.rival = rival
 
-player = Wrestler('Wendy', 'heel')
+  def get_rival(self):
+    return self.rival
 
-print(player.name)
+  def set_team(self):
+    self.team = team
 
-player.set_rival('Babyface')
+  def get_team(self):
+    return self.team
 
-
+player = Wrestler('Sunny', 'Babyface', 'none')
+print(player.get_rival())
