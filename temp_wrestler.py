@@ -30,4 +30,12 @@ print('# of wrestlers: ', n)
 
 for wrestler in range(n):
   wrestler_name = infile.readline().strip()
+  if wrestler == 0:
+    p1 = Wrestler(wrestler_name, 'babyface')
+  else:
+    p1 = Wrestler(wrestler_name, 'none')
+
+
+
+
 
