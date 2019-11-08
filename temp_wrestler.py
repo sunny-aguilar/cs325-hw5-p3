@@ -3,19 +3,13 @@ import sys
 infile = open('wrestler4.txt', 'r')
 
 class Wrestler:
-  def __init__(self, name, team = 'none', rival = 'none'):
+  def __init__(self, name, team = 'none'):
     self.name = name
     self.team = team
-    self.rival = rival
+    self.rival = []
 
   def get_name(self):
     return self.name
-
-  def set_rival(self, rival):
-    self.rival = rival
-
-  def get_rival(self):
-    return self.rival
 
   def set_team(self, team):
     self.team = team
@@ -23,8 +17,14 @@ class Wrestler:
   def get_team(self):
     return self.team
 
+  def set_rival(self, rival):
+    self.rival.append(rival)
 
-lineup = {}           # dictionary to hold wrestler objects
+  def get_rival(self):
+    return self.rival
+
+
+graph = {}           # dictionary to hold wrestler objects
 
 # get total wrestlers
 n = int(infile.readline().strip())
@@ -38,11 +38,11 @@ for wrestler in range(n):
   else:
     p1 = Wrestler(wrestler_name, 'none')
 
-  lineup[wrestler_name] = p1
-
+  graph[wrestler_name] = p1
+print()
 
 # get number of rivalries
-rivalries = infile.readline().strip()
+rivalries = int(infile.readline().strip())
 print('# of rivalries: ', rivalries)
 
 

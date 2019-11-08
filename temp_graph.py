@@ -20,14 +20,19 @@ print(graph)
 
 
 # get number of rivalries
-rivalries = infile.readline().strip()
+rivalries = int(infile.readline().strip())
 print('# of rivalries: ', rivalries)
 
-for i in range(n-1):
+for i in range(rivalries):
   line = infile.readline().strip()
+  rivalry = [str(i) for i in line.split()]
+  print(rivalry)
 
+  r1 = rivalry[0]
+  r2 = rivalry[1]
+  graph[r1]
 
-
+print(r1)
 
 
 

@@ -22,11 +22,11 @@ print(lineup)
 
 
 # get number of rivalries
-rivalries = infile.readline().strip()
+rivalries = int(infile.readline().strip())
 print('# of rivalries: ', rivalries)
 
 
-for i in range(n-1):
+for i in range(rivalries):
   line = infile.readline().strip()
   rivalry = [str(i) for i in line.split()]
   print(rivalry)
