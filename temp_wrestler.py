@@ -86,11 +86,12 @@ def BFS_Search(graph, n, start_vertex):
 
   previous_node = start_vertex
 
-  print('\n------------------')
+
   while len(queue) is not 0:
     # remove node from queue
     node = queue.pop()
-    print('Node :', node)
+    print('\n------------------')
+    print('Next Node :', node)
 
     # check rival teams, exit if the same
     # for i in graph[node].get_rival():
