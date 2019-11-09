@@ -140,12 +140,16 @@ if BFS_Search(graph, n, start_vertex):
 
 team_babyface = []
 team_heel = []
+temp_list = []
 
 for key in graph:
   if graph[key].get_team() == 'babyface':
     team_babyface.append(graph[key].get_name())
-  else:
+  elif graph[key].get_team() == 'heel':
     team_heel.append(graph[key].get_name())
+  else:
+    temp_list.append(graph[key].get_name())
 
 print(team_babyface)
 print(team_heel)
+print(temp_list)
