@@ -30,6 +30,7 @@ graph = {}           # dictionary to hold wrestler objects
 n = int(infile.readline().strip())
 print('# of wrestlers: ', n)
 
+
 # create wrestler nodes and assign alignment
 for wrestler in range(n):
   wrestler_name = infile.readline().strip()
@@ -48,9 +49,8 @@ print('# of rivalries: ', rivalries)
 for i in range(rivalries):
   line = infile.readline().strip()
   rivalry = [str(i) for i in line.split()]
-  print('--debugging--')
-  print(rivalry)
-  print('--debugging--\n')
+  # print('--rivalry list--')
+  # print(rivalry)
 
   r1 = rivalry[0]
   r2 = rivalry[1]
@@ -58,13 +58,13 @@ for i in range(rivalries):
   graph[r1].set_rival(r2)
   graph[r2].set_rival(r1)
 
-for i in graph:
-  print(graph[i].get_name(), graph[i].get_rival())
+for vertex in graph:
+  print(graph[vertex].get_name(), graph[vertex].get_rival())
 
 
-def BFS_Search(graph):
+#def BFS_Search(graph):
   # nodes
-  start = graph[0]
+  #start = graph[0]
 
 
 
