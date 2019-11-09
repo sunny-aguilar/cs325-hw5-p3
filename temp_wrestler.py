@@ -117,6 +117,7 @@ def BFS_Search(graph, n, start_vertex):
 
     visited.append(node)
     print('append visited: ', visited)
+    print('Queue: ', queue)
     print()
 
     for i in graph[node].get_rival():
@@ -124,7 +125,7 @@ def BFS_Search(graph, n, start_vertex):
       if i not in visited:
         if i not in queue:
           queue.append(i)
-        print(i, ' not in queue')
+          print(i, ' added to queue')
       else:
         print(i, ' already visited!')
       print('Queue: ', queue)
