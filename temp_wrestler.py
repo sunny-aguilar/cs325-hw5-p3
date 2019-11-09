@@ -30,7 +30,7 @@ graph = {}           # dictionary to hold wrestler objects
 n = int(infile.readline().strip())
 print('# of wrestlers: ', n)
 
-
+# create wrestler nodes and assign alignment
 for wrestler in range(n):
   wrestler_name = infile.readline().strip()
   if wrestler == 0:
@@ -65,7 +65,6 @@ for i in graph:
 def BFS_Search(graph):
   # nodes
   start = graph[0]
-
 
 
 
