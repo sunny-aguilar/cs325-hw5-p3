@@ -76,7 +76,7 @@ def BFS_Search(graph, n, start_vertex):
   #enque neighbors of start vertex
   for i in graph[start_vertex].get_rival():
     queue.append(i)
-    visited.append(graph[start_vertex].get_name())
+  visited.append(graph[start_vertex].get_name())
   print('\n------------------')
   print('Initial Rival Queue: ', queue[0])
   print('Visited: ', visited)
