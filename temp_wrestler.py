@@ -78,19 +78,13 @@ def BFS_Search(graph, n, start_vertex):
   # starting node
   print('\n------------------')
   print('Start Node: ', start_vertex)
-  print('Visited: ', visited)
   print('Team: ', graph[start_vertex].get_team())
-  print('Queue: ', queue)
-
 
   #enque neighbors of start vertex
   for i in graph[start_vertex].get_rival():
     queue.append(i)
   visited.append(graph[start_vertex].get_name())
-  print('\n------------------')
-  print('Initial Rival Queue: ', queue[0])
   print('Visited: ', visited)
-  print('Team: ', graph[start_vertex].get_team())
   print('Queue: ', queue)
   print()
 
@@ -124,15 +118,16 @@ def BFS_Search(graph, n, start_vertex):
     visited.append(node)
     print('append visited: ', visited)
     print()
-    print('Queue: ', queue)
 
     for i in graph[node].get_rival():
       print('Rivals: ', i)
       if i not in visited:
-        queue.append(i)
+        if i not in queue:
+          queue.append(i)
         print(i, ' not in queue')
       else:
         print(i, ' already visited!')
+      print('Queue: ', queue)
       print()
 
       previous_node = node
