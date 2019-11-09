@@ -1,6 +1,6 @@
 import sys
 
-infile = open('wrestler1.txt', 'r')
+infile = open('wrestler2.txt', 'r')
 
 class Wrestler:
   def __init__(self, name, team = 'none'):
@@ -97,20 +97,7 @@ def BFS_Search(graph, n, start_vertex):
     print('\n------------------')
     print('Next Node :', node)
 
-    # check rival teams, exit if the same
-    # for i in graph[node].get_rival():
-    #   print('Rival Name: ', graph[i].get_name())
-    #   if graph[i].get_team == graph[node].get_team:
-    #     print('Same teams!')
-    #     exit('Impossible')
-    print('Current node:', graph[node].get_name())
-    print('Current node team:', graph[node].get_team())
-    print('Previous node:', graph[previous_node].get_name())
-    print('Previous node team:', graph[previous_node].get_team())
-    print()
-
-
-
+    # assign team to node
     if graph[previous_node].get_team() == 'babyface':
       graph[node].set_team('heel')
       print(graph[node].get_name(), ': heel team set')
@@ -118,7 +105,7 @@ def BFS_Search(graph, n, start_vertex):
       print(graph[node].get_name(), ': babyface team set')
       graph[node].set_team('babyface')
 
-
+    # check if rivals are on the same team, exit
     for i in graph[node].get_rival():
       if graph[i].get_team() == graph[node].get_team():
         print('Same Teams!')
