@@ -64,6 +64,7 @@ for vertex in graph:
   print(graph[vertex].get_name(), graph[vertex].get_rival())
 
 
+
 def BFS_Search(graph, n, start_vertex):
   # visited vertices
   visited = []
@@ -109,17 +110,21 @@ def BFS_Search(graph, n, start_vertex):
         queue.append(i)
         print(i, ' not in queue')
 
-    #graph[node].set_team('')
-
-  # nodes
-  # if graph[start_vertex].get_team() is 'babyface':
-  #   print('Babyface found!')
+  return True
 
 
 
+if BFS_Search(graph, n, start_vertex):
+  print('\nYes Possible')
 
+team_babyface = []
+team_heel = []
 
-BFS_Search(graph, n, start_vertex)
+for key in graph:
+  if graph[key].get_team() == 'babyface':
+    team_babyface.append(graph[key].get_name())
+  else:
+    team_heel.append(graph[key].get_name())
 
-
-
+print(team_babyface)
+print(team_heel)
