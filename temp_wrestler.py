@@ -78,6 +78,9 @@ def BFS_Search(graph, n, start_vertex):
   # starting node
   print('\n------------------')
   print('Start Node: ', start_vertex)
+  print('Visited: ', visited)
+  print('Team: ', graph[start_vertex].get_team())
+  print('Queue: ', queue)
 
 
   #enque neighbors of start vertex
