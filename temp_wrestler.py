@@ -103,6 +103,8 @@ def BFS_Search(graph, n, start_vertex):
     #   if graph[i].get_team == graph[node].get_team:
     #     print('Same teams!')
     #     exit('Impossible')
+    print('Check team:')
+    print(graph[previous_node].get_name())
     if graph[previous_node].get_team() == graph[node].get_team:
       print('Same Teams!')
       exit('Impossible')
@@ -126,12 +128,13 @@ def BFS_Search(graph, n, start_vertex):
         if i not in queue:
           queue.append(i)
           print(i, ' added to queue')
+        print(i, ' already in queue')
       else:
         print(i, ' already visited!')
       print('Queue: ', queue)
       print()
 
-      previous_node = node
+    previous_node = node
 
   return True
 
