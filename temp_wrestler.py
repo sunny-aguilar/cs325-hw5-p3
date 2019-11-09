@@ -1,6 +1,6 @@
 import sys
 
-infile = open('wrestler4.txt', 'r')
+infile = open('wrestler1.txt', 'r')
 
 class Wrestler:
   def __init__(self, name, team = 'none'):
@@ -76,16 +76,18 @@ def BFS_Search(graph, n, start_vertex):
   for i in graph[start_vertex].get_rival():
     queue.append(i)
     visited.append(graph[start_vertex].get_name())
-  print('Rivals Queue: ', queue[0])
+  print('\nInitial Rival Queue: ', queue[0])
   print('Visited: ', visited)
   print('Team: ', graph[start_vertex].get_team())
+  print()
+
+  previous_node = start_vertex
 
   while len(queue) is not 0:
-    previous_node = start_vertex
-
     # remove node from queue
     node = queue.pop()
     print('Node :', node)
+
     # check rival teams, exit if the same
     # for i in graph[node].get_rival():
     #   print('Rival Name: ', graph[i].get_name())
@@ -98,17 +100,25 @@ def BFS_Search(graph, n, start_vertex):
 
     if graph[previous_node].get_team() == 'babyface':
       graph[node].set_team('heel')
+      print(graph[node].get_name(), ' heel team set\n')
     else:
+      print(graph[node].get_name(), ' babyface team set\n')
       graph[node].set_team('babyface')
 
     visited.append(node)
-    print('visited: ', visited)
+    print('append visited: ', visited)
+    print()
 
     for i in graph[node].get_rival():
       print('Rivals: ', i)
       if i not in visited:
         queue.append(i)
         print(i, ' not in queue')
+      else:
+        print('Rival ', i, ' already visited')
+      print()
+
+      previous_node = node
 
   return True
 
