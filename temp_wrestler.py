@@ -75,6 +75,10 @@ def BFS_Search(graph, n, start_vertex):
   # create a queue
   queue = []
 
+  # starting node
+  print('Start Node: ', start_vertex)
+  print('------------------')
+
   #enque neighbors of start vertex
   for i in graph[start_vertex].get_rival():
     queue.append(i)
