@@ -66,7 +66,7 @@ for vertex in graph:
 
 def BFS_Search(graph, n, start_vertex):
   # visited vertices
-  visited = [0 for x in range(n)]
+  visited = []
 
   # create a queue
   queue = []
@@ -74,7 +74,7 @@ def BFS_Search(graph, n, start_vertex):
   #enque neighbors of start vertex
   for i in graph[start_vertex].get_rival():
     queue.append(i)
-    visited[0] = graph[start_vertex].get_name()
+    visited.append(graph[start_vertex].get_name())
   print('Rivals Queue: ', queue[0])
   print('Visited: ', visited)
   print('Team: ', graph[start_vertex].get_team())
@@ -100,10 +100,13 @@ def BFS_Search(graph, n, start_vertex):
     else:
       graph[node].set_team('babyface')
 
+    visited.append(node)
+    print('visited: ', visited)
+
     for i in graph[node].get_rival():
       print('Rivals: ', i)
       if i not in visited:
-    #     queue.append(i)
+        queue.append(i)
         print(i, ' not in queue')
 
     #graph[node].set_team('')
