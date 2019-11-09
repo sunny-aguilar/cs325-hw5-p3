@@ -103,11 +103,12 @@ def BFS_Search(graph, n, start_vertex):
     #   if graph[i].get_team == graph[node].get_team:
     #     print('Same teams!')
     #     exit('Impossible')
-    print('Check team:')
-    print(graph[previous_node].get_name())
-    if graph[previous_node].get_team() == graph[node].get_team:
-      print('Same Teams!')
-      exit('Impossible')
+    print('Current node:', graph[node].get_name())
+    print('Current node team:', graph[node].get_team())
+    print('Previous node:', graph[previous_node].get_name())
+    print('Previous node team:', graph[previous_node].get_team())
+    print()
+
 
 
     if graph[previous_node].get_team() == 'babyface':
@@ -116,6 +117,13 @@ def BFS_Search(graph, n, start_vertex):
     else:
       print(graph[node].get_name(), ': babyface team set')
       graph[node].set_team('babyface')
+
+
+    for i in graph[node].get_rival():
+      if graph[i].get_team() == graph[node].get_team():
+        print('Same Teams!')
+        exit('Impossible')
+
 
     visited.append(node)
     print('append visited: ', visited)
