@@ -81,6 +81,7 @@ def BFS_Search(graph, n, start_vertex):
   print('Initial Rival Queue: ', queue[0])
   print('Visited: ', visited)
   print('Team: ', graph[start_vertex].get_team())
+  print('Queue: ', queue)
   print()
 
   previous_node = start_vertex
