@@ -57,6 +57,7 @@ for i in range(rivalries):
   r1 = rivalry[0]
   r2 = rivalry[1]
 
+  # append rival to wrestler
   graph[r1].set_rival(r2)
   graph[r2].set_rival(r1)
 
@@ -76,7 +77,8 @@ def BFS_Search(graph, n, start_vertex):
   for i in graph[start_vertex].get_rival():
     queue.append(i)
     visited.append(graph[start_vertex].get_name())
-  print('\nInitial Rival Queue: ', queue[0])
+  print('\n------------------')
+  print('Initial Rival Queue: ', queue[0])
   print('Visited: ', visited)
   print('Team: ', graph[start_vertex].get_team())
   print()
