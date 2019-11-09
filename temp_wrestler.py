@@ -102,11 +102,12 @@ def BFS_Search(graph, n, start_vertex):
       print('Same Teams!')
       exit('Impossible')
 
+
     if graph[previous_node].get_team() == 'babyface':
       graph[node].set_team('heel')
-      print(graph[node].get_name(), ' heel team set\n')
+      print(graph[node].get_name(), ': heel team set')
     else:
-      print(graph[node].get_name(), ' babyface team set\n')
+      print(graph[node].get_name(), ': babyface team set')
       graph[node].set_team('babyface')
 
     visited.append(node)
