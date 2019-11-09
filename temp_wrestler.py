@@ -80,18 +80,33 @@ def BFS_Search(graph, n, start_vertex):
   print('Team: ', graph[start_vertex].get_team())
 
   while len(queue) is not 0:
+    previous_node = start_vertex
+
     # remove node from queue
     node = queue.pop()
     print('Node :', node)
     # check rival teams, exit if the same
-    for i in graph[node].get_rival():
-      print('Rival Name: ', graph[i].get_name())
-      if graph[i].get_team == graph[node].get_team:
-        print('Same teams!')
-        exit('Impossible')
+    # for i in graph[node].get_rival():
+    #   print('Rival Name: ', graph[i].get_name())
+    #   if graph[i].get_team == graph[node].get_team:
+    #     print('Same teams!')
+    #     exit('Impossible')
+    if graph[previous_node].get_team() == graph[node].get_team:
+      print('Same Teams!')
+      exit('Impossible')
 
-    if 
-    graph[node].set_team('')
+    if graph[previous_node].get_team() == 'babyface':
+      graph[node].set_team('heel')
+    else:
+      graph[node].set_team('babyface')
+
+    for i in graph[node].get_rival():
+      print('Rivals: ', i)
+      if i not in visited:
+    #     queue.append(i)
+        print(i, ' not in queue')
+
+    #graph[node].set_team('')
 
   # nodes
   # if graph[start_vertex].get_team() is 'babyface':
