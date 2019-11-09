@@ -62,6 +62,7 @@ for i in range(rivalries):
   graph[r2].set_rival(r1)
 
 print('\nNodes & Rivals:')
+print('------------------')
 for vertex in graph:
   print(graph[vertex].get_name(), graph[vertex].get_rival())
 
