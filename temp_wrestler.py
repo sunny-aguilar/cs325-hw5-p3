@@ -148,10 +148,16 @@ def BFS_Search(graph, n, start_vertex):
     # queue
     queue_2 = []
 
+    starting_node = None
+
     # starting node
     print('\nDisconnected Nodes -------')
-    print('Start Node: ', disconnected_nodes['Maxxx'])
+    for i in disconnected_nodes:
+      starting_node = i
 
+    print('Disc: ', graph[starting_node].get_name())
+    graph[starting_node].set_team('babyface')
+    print('Rival: ', graph[starting_node].get_team())
 
 
 
