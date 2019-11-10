@@ -2,7 +2,7 @@ import sys
 
 # open file
 infile = open(sys.argv[1], 'r')
-#infile = open('test.txt', 'r')
+#infile = open('wrestler1.txt', 'r')
 
 # create a class that will be used to create nodes for each wrestler
 class Wrestler:
@@ -11,6 +11,7 @@ class Wrestler:
     self.name = name
     self.team = team
     self.rival = []
+    self.parent = ''
 
   # get name of wrestler
   def get_name(self):
