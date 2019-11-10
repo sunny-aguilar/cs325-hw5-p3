@@ -1,37 +1,46 @@
 import sys
 
+# open file
 infile = open('wrestler2.txt', 'r')
 
+# create a class that will be used to create nodes for each wrestler
 class Wrestler:
+  # data variables for the class
   def __init__(self, name, team = 'none'):
     self.name = name
     self.team = team
     self.rival = []
 
+  # get name of wrestler
   def get_name(self):
     return self.name
 
+  # set team of wrestler
   def set_team(self, team):
     self.team = team
 
+  # get team of wrestler
   def get_team(self):
     return self.team
 
+  # set wrestler's rival
   def set_rival(self, rival):
     self.rival.append(rival)
 
+  # get wrestler's rivals
   def get_rival(self):
     return self.rival
 
-
-graph = {}           # dictionary to hold wrestler objects
+# dictionary to hold wrestler objects
+graph = {}
 
 # get total wrestlers
 n = int(infile.readline().strip())
 
+# set a starting vertex
+start_vertex = None
 
 # create wrestler nodes and assign alignment to first
-start_vertex = None
 for wrestler in range(n):
   wrestler_name = infile.readline().strip()
   if wrestler == 0:
