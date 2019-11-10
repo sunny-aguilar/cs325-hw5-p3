@@ -6,8 +6,8 @@ Instructions to run programs on flip:
 - type in the commands below into flip
   server to run the specified program
 
-- wrestler.txt must be saved in the same directory as 
-  the python file
+- enter the .txt file name as the last argument
+  in the command line
 
 run:
-python3 shopping.py
+python3 wrestler.py <textfile.txt>
