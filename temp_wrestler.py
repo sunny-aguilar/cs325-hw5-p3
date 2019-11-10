@@ -1,6 +1,6 @@
 import sys
 
-infile = open('wrestler.txt', 'r')
+infile = open('wrestler2.txt', 'r')
 
 class Wrestler:
   def __init__(self, name, team = 'none'):
@@ -28,7 +28,6 @@ graph = {}           # dictionary to hold wrestler objects
 
 # get total wrestlers
 n = int(infile.readline().strip())
-print('# of wrestlers: ', n)
 
 
 # create wrestler nodes and assign alignment to first
@@ -46,7 +45,7 @@ for wrestler in range(n):
 
 # get number of rivalries
 rivalries = int(infile.readline().strip())
-print('# of rivalries: ', rivalries)
+
 
 for i in range(rivalries):
   line = infile.readline().strip()
@@ -61,11 +60,6 @@ for i in range(rivalries):
   graph[r1].set_rival(r2)
   graph[r2].set_rival(r1)
 
-print('\nNodes & their Rivals:')
-print('------------------')
-for vertex in graph:
-  print(graph[vertex].get_name(), graph[vertex].get_rival())
-
 
 
 def BFS_Search(graph, n, start_vertex):
@@ -76,72 +70,47 @@ def BFS_Search(graph, n, start_vertex):
   queue = []
 
   # starting node
-  print('\n------------------')
-  print('Start Node: ', start_vertex)
-  print('Team: ', graph[start_vertex].get_team())
 
   #enque neighbors of start vertex
   for i in graph[start_vertex].get_rival():
     queue.append(i)
   visited.append(graph[start_vertex].get_name())
-  print('Visited: ', visited)
-  print('Queue: ', queue)
-  print()
 
   previous_node = start_vertex
 
 
   while len(queue) is not 0:
     # remove node from queue
-    node = queue.pop(0)
-    print('\n------------------')
-    print('Next Node :', node)
+    node = queue.pop()
 
     # assign team to node
     if graph[previous_node].get_team() == 'babyface':
       graph[node].set_team('heel')
-      print(graph[node].get_name(), ': heel team set')
     else:
-      print(graph[node].get_name(), ': babyface team set')
       graph[node].set_team('babyface')
 
     # check if rivals are on the same team, exit
     for i in graph[node].get_rival():
       if graph[i].get_team() == graph[node].get_team():
-        print('Same Teams!')
         exit('Impossible')
 
-
     visited.append(node)
-    print('append visited: ', visited)
-    print('Queue: ', queue)
-    print()
 
     for i in graph[node].get_rival():
-      print('Rivals: ', i)
       if i not in visited:
         if i not in queue:
           queue.append(i)
-          print(i, ' added to queue')
-        else:
-          print(i, ' already in queue')
-      else:
-        print(i, ' already visited!')
-      print('Queue: ', queue)
-      print()
 
     previous_node = node
 
 
     total_nodes = get_all_nodes(graph, start_vertex)
     disconnected_nodes = set(total_nodes) - set(visited)
-    print('Length: ', len(disconnected_nodes))
     # add disconnected nodes
     # starting node
-    print('\nDisconnected Nodes -------')
+
     for i in disconnected_nodes:
       starting_node = i
-    print('Disc. Starting Node: ', starting_node)
 
     if len(queue) == 0 and i not in visited:
       # pluck node from disjoint set
@@ -175,9 +144,7 @@ for key in graph:
     team_babyface.append(graph[key].get_name())
   elif graph[key].get_team() == 'heel':
     team_heel.append(graph[key].get_name())
-  else:
-    temp_list.append(graph[key].get_name())
 
-print(team_babyface)
-print(team_heel)
-print(temp_list)
+print('Babyfaces: ', *team_babyface, end=" ")
+print()
+print('Heels: ', *team_heel, end=" ")
