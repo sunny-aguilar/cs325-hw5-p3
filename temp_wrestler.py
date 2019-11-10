@@ -44,15 +44,17 @@ start_vertex = None
 for wrestler in range(n):
   wrestler_name = infile.readline().strip()
   if wrestler == 0:
+    # assign the wrestler as a babyface
     p1 = Wrestler(wrestler_name, 'babyface')
+    # assignt eh wrestler as the starting vertex
     start_vertex = wrestler_name
   else:
+    # assign all other wrestlers team as undefined
     p1 = Wrestler(wrestler_name, 'none')
-  #add wrestler to dictionary
+  #add wrestlers to dictionary
   graph[wrestler_name] = p1
 
-
-# get number of rivalries
+# get number of rivalries from file
 rivalries = int(infile.readline().strip())
 
 
