@@ -1,8 +1,8 @@
 import sys
 
 # open file
-infile = open(sys.argv[1], 'r')
-#infile = open('wrestler2.txt', 'r')
+#infile = open(sys.argv[1], 'r')
+infile = open('wrestler.txt', 'r')
 
 # create a class that will be used to create nodes for each wrestler
 class Wrestler:
@@ -129,6 +129,8 @@ def BFS_Search(graph, n, start_vertex):
   #enque neighbors of start vertex
   for i in graph[start_vertex].get_rival():
     queue.append(i)
+    # set parent of rivals
+    graph[i].set_parent(start_vertex)
   visited.append(graph[start_vertex].get_name())
 
   previous_node = start_vertex
@@ -136,10 +138,10 @@ def BFS_Search(graph, n, start_vertex):
   # gets nodes from queue
   while len(queue) is not 0:
     # remove node from queue
-    node = queue.pop()
+    node = queue.pop(0)
 
     # assign team to node
-    if graph[previous_node].get_team() == 'babyface':
+    if graph[graph[node].get_parent()].get_team() == 'babyface':
       graph[node].set_team('heel')
     else:
       graph[node].set_team('babyface')
@@ -157,8 +159,10 @@ def BFS_Search(graph, n, start_vertex):
       if i not in visited:
         if i not in queue:
           queue.append(i)
+          # add parent to rivals
+          graph[i].set_parent(graph[node].get_name())
 
-    previous_node = node
+    previous_node = graph[node].get_parent()
 
     # enqueue disconnected unvisited nodes
     total_nodes = get_all_nodes(graph, start_vertex)
@@ -173,6 +177,9 @@ def BFS_Search(graph, n, start_vertex):
       # set team
       graph[i].set_team('babyface')
       previous_node = graph[i].get_name()
+
+      graph[starting_node].set_parent(graph[i].get_name())
+
       # pluck node from disjoint set
       queue.append(starting_node)
 
