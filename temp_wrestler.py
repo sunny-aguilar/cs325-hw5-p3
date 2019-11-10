@@ -1,6 +1,7 @@
 import sys
 
 # open file
+#infile = open(sys.argv[1], 'r)
 infile = open('wrestler2.txt', 'r')
 
 # create a class that will be used to create nodes for each wrestler
@@ -78,29 +79,32 @@ def main():
     graph[r1].set_rival(r2)
     graph[r2].set_rival(r1)
 
-
+  # let user know that its possible to designate babyfaces and heels
   if BFS_Search(graph, n, start_vertex):
     print('\nYes Possible')
 
+  # create arrays to hold wrestler teams
   team_babyface = []
   team_heel = []
-  temp_list = []
 
+  # place wrestlers in their team array
   for key in graph:
     if graph[key].get_team() == 'babyface':
       team_babyface.append(graph[key].get_name())
     elif graph[key].get_team() == 'heel':
       team_heel.append(graph[key].get_name())
 
+  # print wrestlers and the team they are in
   print('Babyfaces: ', *team_babyface, end=" ")
   print()
   print('Heels: ', *team_heel, end=" ")
+  print()
 
 
 # BFS_Search()
 # receives:         a graph dictionary, n, starting vertex
 # returns:          boolean
-# preconditions:    graph must be popultated, n must be an integer,
+# preconditions:    graph must be populated, n must be an integer,
 #                   and starting vertex must be assigned
 # description:      this function performs BFS to traverse a graph in
 #                   order to designate wrestlers and babyfaces and
@@ -116,8 +120,6 @@ def BFS_Search(graph, n, start_vertex):
   # create a queue
   queue = []
 
-  # starting node
-
   #enque neighbors of start vertex
   for i in graph[start_vertex].get_rival():
     queue.append(i)
@@ -125,7 +127,7 @@ def BFS_Search(graph, n, start_vertex):
 
   previous_node = start_vertex
 
-
+  # gets nodes from queue
   while len(queue) is not 0:
     # remove node from queue
     node = queue.pop()
@@ -141,8 +143,10 @@ def BFS_Search(graph, n, start_vertex):
       if graph[i].get_team() == graph[node].get_team():
         exit('Impossible')
 
+    # updated visited nodes
     visited.append(node)
 
+    # append unvisited nodes to queue if not in queue
     for i in graph[node].get_rival():
       if i not in visited:
         if i not in queue:
@@ -150,19 +154,20 @@ def BFS_Search(graph, n, start_vertex):
 
     previous_node = node
 
-
+    # enqueue disconnected unvisited nodes
     total_nodes = get_all_nodes(graph, start_vertex)
     disconnected_nodes = set(total_nodes) - set(visited)
-    # add disconnected nodes
-    # starting node
 
+    # get a node from disconnected graph
     for i in disconnected_nodes:
       starting_node = i
 
+    #enqueue disconnected unvisited nodes
     if len(queue) == 0 and i not in visited:
-      # pluck node from disjoint set
+      # set team
       graph[i].set_team('babyface')
       previous_node = graph[i].get_name()
+      # pluck node from disjoint set
       queue.append(starting_node)
 
   # return true if possible to designate babyfaces and heels
