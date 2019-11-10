@@ -50,8 +50,6 @@ rivalries = int(infile.readline().strip())
 for i in range(rivalries):
   line = infile.readline().strip()
   rivalry = [str(i) for i in line.split()]
-  # print('--rivalry list--')
-  # print(rivalry)
 
   r1 = rivalry[0]
   r2 = rivalry[1]
@@ -61,7 +59,18 @@ for i in range(rivalries):
   graph[r2].set_rival(r1)
 
 
-
+# BFS_Search()
+# receives:         a graph dictionary, n, starting vertex
+# returns:          boolean
+# preconditions:    graph must be popultated, n must be an integer,
+#                   and starting vertex must be assigned
+# description:      this function performs BFS to traverse a graph in
+#                   order to designate wrestlers and babyfaces and
+#                   heels. If any rivalries are between wrestlers on
+#                   the same team, then it is not possible to perform
+#                   such a designation and the function returns false.
+#                   If the designations are possible, then true is
+#                   return.
 def BFS_Search(graph, n, start_vertex):
   # visited vertices
   visited = []
