@@ -165,7 +165,7 @@ def BFS_Search(graph, n, start_vertex):
       previous_node = graph[i].get_name()
       queue.append(starting_node)
 
-
+  # return true if possible to designate babyfaces and heels
   return True
 
 
@@ -178,5 +178,5 @@ def get_all_nodes(graph, start_vertex):
 
 
 
-
+# call main program
 main()
