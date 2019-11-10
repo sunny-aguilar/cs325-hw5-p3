@@ -1,12 +1,13 @@
 import sys
 
-infile = open('test.txt', 'r')
+infile = open('wrestler1.txt', 'r')
 
 class Wrestler:
   def __init__(self, name, team = 'none'):
     self.name = name
     self.team = team
     self.rival = []
+    self.parent = ''
 
   def get_name(self):
     return self.name
@@ -22,6 +23,12 @@ class Wrestler:
 
   def get_rival(self):
     return self.rival
+
+  def set_parent(self, parent):
+    self.parent = parent
+
+  def get_parent(self):
+    return self.parent
 
 
 graph = {}           # dictionary to hold wrestler objects
@@ -83,9 +90,13 @@ def BFS_Search(graph, n, start_vertex):
   #enque neighbors of start vertex
   for i in graph[start_vertex].get_rival():
     queue.append(i)
+    graph[i].set_parent(start_vertex)
   visited.append(graph[start_vertex].get_name())
   print('Visited: ', visited)
   print('Queue: ', queue)
+  print('Parents of rivals: ')
+  for i in graph[start_vertex].get_rival():
+    print('Parent of ', i , ' :', graph[i].get_parent())
   print()
 
   previous_node = start_vertex
@@ -93,17 +104,21 @@ def BFS_Search(graph, n, start_vertex):
 
   while len(queue) is not 0:
     # remove node from queue
-    node = queue.pop()
+    node = queue.pop(0)
     print('\n------------------')
     print('Next Node :', node)
 
     # assign team to node
-    if graph[previous_node].get_team() == 'babyface':
+    if graph[graph[node].get_parent()].get_team() == 'babyface':
       graph[node].set_team('heel')
       print(graph[node].get_name(), ': heel team set')
     else:
       print(graph[node].get_name(), ': babyface team set')
       graph[node].set_team('babyface')
+
+  # add parent
+    # graph[node].set_parent(graph[previous_node].get_name())
+    # print('PARENT NAME: ', graph[node].get_parent())
 
     # check if rivals are on the same team, exit
     for i in graph[node].get_rival():
@@ -123,6 +138,9 @@ def BFS_Search(graph, n, start_vertex):
         if i not in queue:
           queue.append(i)
           print(i, ' added to queue')
+          # add parent to rivals
+          graph[i].set_parent(graph[node].get_name())
+          print('Parent of ', i, ' is ', graph[i].get_parent())
         else:
           print(i, ' already in queue')
       else:
@@ -130,24 +148,24 @@ def BFS_Search(graph, n, start_vertex):
       print('Queue: ', queue)
       print()
 
-    previous_node = node
+    previous_node = graph[node].get_parent()
 
 
-    total_nodes = get_all_nodes(graph, start_vertex)
-    disconnected_nodes = set(total_nodes) - set(visited)
-    print('Length: ', len(disconnected_nodes))
-    # add disconnected nodes
-    # starting node
-    print('\nDisconnected Nodes -------')
-    for i in disconnected_nodes:
-      starting_node = i
-    print('Disc. Starting Node: ', starting_node)
+    # total_nodes = get_all_nodes(graph, start_vertex)
+    # disconnected_nodes = set(total_nodes) - set(visited)
+    # print('Length: ', len(disconnected_nodes))
+    # # add disconnected nodes
+    # # starting node
+    # print('\nDisconnected Nodes -------')
+    # for i in disconnected_nodes:
+    #   starting_node = i
+    # print('Disc. Starting Node: ', starting_node)
 
-    if len(queue) == 0 and i not in visited:
-      # pluck node from disjoint set
-      graph[i].set_team('babyface')
-      previous_node = graph[i].get_name()
-      queue.append(starting_node)
+    # if len(queue) == 0 and i not in visited:
+    #   # pluck node from disjoint set
+    #   graph[i].set_team('babyface')
+    #   previous_node = graph[i].get_name()
+    #   queue.append(starting_node)
 
 
   return True
