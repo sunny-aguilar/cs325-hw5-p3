@@ -1,6 +1,6 @@
 import sys
 
-infile = open('wrestler.txt', 'r')
+infile = open('wrestler2.txt', 'r')
 
 class Wrestler:
   def __init__(self, name, team = 'none'):
@@ -93,7 +93,7 @@ def BFS_Search(graph, n, start_vertex):
 
   while len(queue) is not 0:
     # remove node from queue
-    node = queue.pop(0)
+    node = queue.pop()
     print('\n------------------')
     print('Next Node :', node)
 
