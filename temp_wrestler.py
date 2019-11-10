@@ -1,8 +1,8 @@
 import sys
 
 # open file
-#infile = open(sys.argv[1], 'r)
-infile = open('wrestler2.txt', 'r')
+infile = open(sys.argv[1], 'r')
+#infile = open('wrestler2.txt', 'r')
 
 # create a class that will be used to create nodes for each wrestler
 class Wrestler:
