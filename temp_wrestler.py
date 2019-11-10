@@ -31,7 +31,7 @@ n = int(infile.readline().strip())
 print('# of wrestlers: ', n)
 
 
-# create wrestler nodes and assign alignment
+# create wrestler nodes and assign alignment to first
 start_vertex = None
 for wrestler in range(n):
   wrestler_name = infile.readline().strip()
@@ -40,7 +40,7 @@ for wrestler in range(n):
     start_vertex = wrestler_name
   else:
     p1 = Wrestler(wrestler_name, 'none')
-
+  #add wrestler to dictionary
   graph[wrestler_name] = p1
 
 
@@ -123,7 +123,8 @@ def BFS_Search(graph, n, start_vertex):
         if i not in queue:
           queue.append(i)
           print(i, ' added to queue')
-        print(i, ' already in queue')
+        else:
+          print(i, ' already in queue')
       else:
         print(i, ' already visited!')
       print('Queue: ', queue)
@@ -131,7 +132,43 @@ def BFS_Search(graph, n, start_vertex):
 
     previous_node = node
 
+
+  # utility function
+  total_nodes = get_all_nodes(graph, start_vertex)
+  # check if any disconnected nodes identified
+  if len(visited) < len(total_nodes):
+    # run BFS on disconnected nodes
+    # get disconnected nodes
+    disconnected_nodes = set(total_nodes) - set(visited)
+    print('Disconnected Nodes: ', disconnected_nodes)
+
+    # visited tracker
+    visited_2 = []
+
+    # queue
+    queue_2 = []
+
+    # starting node
+    print('\nDisconnected Nodes -------')
+    print('Start Node: ', disconnected_nodes['Maxxx'])
+
+
+
+
+
+
+
+
   return True
+
+
+# utility function that returns all nodes in graph
+def get_all_nodes(graph, start_vertex):
+  temp_list = []
+  for i in graph:
+    temp_list.append(i)
+  return temp_list
+
 
 
 
