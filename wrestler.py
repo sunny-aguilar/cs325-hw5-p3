@@ -32,6 +32,12 @@ class Wrestler:
   def get_rival(self):
     return self.rival
 
+  def set_parent(self, parent):
+    self.parent = parent
+
+  def get_parent(self):
+    return self.parent
+
 
 # main()
 # receives:         none
