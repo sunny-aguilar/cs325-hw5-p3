@@ -31,43 +31,70 @@ class Wrestler:
   def get_rival(self):
     return self.rival
 
-# dictionary to hold wrestler objects
-graph = {}
 
-# get total wrestlers
-n = int(infile.readline().strip())
+# main()
+# receives:         none
+# returns:          none
+# preconditions:    none
+# description:      runs the main program calling various functions
+#                   to designate wrestlers as babyfaces and heels and
+#                   provide the solution using the BFS algorithm.
+def main():
+  # dictionary to hold wrestler objects
+  graph = {}
 
-# set a starting vertex
-start_vertex = None
+  # get total wrestlers
+  n = int(infile.readline().strip())
 
-# create wrestler nodes and assign alignment to first
-for wrestler in range(n):
-  wrestler_name = infile.readline().strip()
-  if wrestler == 0:
-    # assign the wrestler as a babyface
-    p1 = Wrestler(wrestler_name, 'babyface')
-    # assignt eh wrestler as the starting vertex
-    start_vertex = wrestler_name
-  else:
-    # assign all other wrestlers team as undefined
-    p1 = Wrestler(wrestler_name, 'none')
-  #add wrestlers to dictionary
-  graph[wrestler_name] = p1
+  # set a starting vertex
+  start_vertex = None
 
-# get number of rivalries from file
-rivalries = int(infile.readline().strip())
+  # create wrestler nodes and assign alignment to first
+  for wrestler in range(n):
+    wrestler_name = infile.readline().strip()
+    if wrestler == 0:
+      # assign the wrestler as a babyface
+      p1 = Wrestler(wrestler_name, 'babyface')
+      # assignt eh wrestler as the starting vertex
+      start_vertex = wrestler_name
+    else:
+      # assign all other wrestlers team as undefined
+      p1 = Wrestler(wrestler_name, 'none')
+    #add wrestlers to dictionary
+    graph[wrestler_name] = p1
+
+  # get number of rivalries from file
+  rivalries = int(infile.readline().strip())
+
+  # assign rivals of each wrestler
+  for i in range(rivalries):
+    line = infile.readline().strip()
+    rivalry = [str(i) for i in line.split()]
+
+    r1 = rivalry[0]
+    r2 = rivalry[1]
+
+    # append rival to wrestler
+    graph[r1].set_rival(r2)
+    graph[r2].set_rival(r1)
 
 
-for i in range(rivalries):
-  line = infile.readline().strip()
-  rivalry = [str(i) for i in line.split()]
+  if BFS_Search(graph, n, start_vertex):
+    print('\nYes Possible')
 
-  r1 = rivalry[0]
-  r2 = rivalry[1]
+  team_babyface = []
+  team_heel = []
+  temp_list = []
 
-  # append rival to wrestler
-  graph[r1].set_rival(r2)
-  graph[r2].set_rival(r1)
+  for key in graph:
+    if graph[key].get_team() == 'babyface':
+      team_babyface.append(graph[key].get_name())
+    elif graph[key].get_team() == 'heel':
+      team_heel.append(graph[key].get_name())
+
+  print('Babyfaces: ', *team_babyface, end=" ")
+  print()
+  print('Heels: ', *team_heel, end=" ")
 
 
 # BFS_Search()
@@ -152,19 +179,4 @@ def get_all_nodes(graph, start_vertex):
 
 
 
-if BFS_Search(graph, n, start_vertex):
-  print('\nYes Possible')
-
-team_babyface = []
-team_heel = []
-temp_list = []
-
-for key in graph:
-  if graph[key].get_team() == 'babyface':
-    team_babyface.append(graph[key].get_name())
-  elif graph[key].get_team() == 'heel':
-    team_heel.append(graph[key].get_name())
-
-print('Babyfaces: ', *team_babyface, end=" ")
-print()
-print('Heels: ', *team_heel, end=" ")
+main()
