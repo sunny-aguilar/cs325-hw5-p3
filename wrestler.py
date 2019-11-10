@@ -1,8 +1,8 @@
 import sys
 
 # open file
-#infile = open(sys.argv[1], 'r')
-infile = open('wrestler.txt', 'r')
+infile = open(sys.argv[1], 'r')
+#infile = open('test.txt', 'r')
 
 # create a class that will be used to create nodes for each wrestler
 class Wrestler:
@@ -137,7 +137,7 @@ def BFS_Search(graph, n, start_vertex):
 
   # gets nodes from queue
   while len(queue) is not 0:
-    # remove node from queue
+    # BFS - remove node from queue
     node = queue.pop(0)
 
     # assign team to node
