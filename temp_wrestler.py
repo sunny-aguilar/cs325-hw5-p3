@@ -1,6 +1,6 @@
 import sys
 
-infile = open('wrestler2.txt', 'r')
+infile = open('wrestler.txt', 'r')
 
 class Wrestler:
   def __init__(self, name, team = 'none'):
@@ -93,7 +93,7 @@ def BFS_Search(graph, n, start_vertex):
 
   while len(queue) is not 0:
     # remove node from queue
-    node = queue.pop()
+    node = queue.pop(0)
     print('\n------------------')
     print('Next Node :', node)
 
@@ -133,36 +133,21 @@ def BFS_Search(graph, n, start_vertex):
     previous_node = node
 
 
-  # utility function
-  total_nodes = get_all_nodes(graph, start_vertex)
-  # check if any disconnected nodes identified
-  if len(visited) < len(total_nodes):
-    # run BFS on disconnected nodes
-    # get disconnected nodes
+    total_nodes = get_all_nodes(graph, start_vertex)
     disconnected_nodes = set(total_nodes) - set(visited)
-    print('Disconnected Nodes: ', disconnected_nodes)
-
-    # visited tracker
-    visited_2 = []
-
-    # queue
-    queue_2 = []
-
-    starting_node = None
-
+    print('Length: ', len(disconnected_nodes))
+    # add disconnected nodes
     # starting node
     print('\nDisconnected Nodes -------')
     for i in disconnected_nodes:
       starting_node = i
+    print('Disc. Starting Node: ', starting_node)
 
-    print('Disc: ', graph[starting_node].get_name())
-    graph[starting_node].set_team('babyface')
-    print('Rival: ', graph[starting_node].get_team())
-
-
-
-
-
+    if len(queue) == 0 and i not in visited:
+      # pluck node from disjoint set
+      graph[i].set_team('babyface')
+      previous_node = graph[i].get_name()
+      queue.append(starting_node)
 
 
   return True
